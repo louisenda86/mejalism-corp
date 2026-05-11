@@ -269,13 +269,13 @@ if (window.p5) {
       canvas.parent("p5-stage");
       p.pixelDensity(Math.min(window.devicePixelRatio || 1, 2));
       buildGrid();
-      for (let i = 0; i < 140; i += 1) {
+      for (let i = 0; i < 82; i += 1) {
         particles.push({
           x: p.random(p.width),
           y: p.random(p.height),
-          vx: p.random(-0.35, 0.35),
-          vy: p.random(-0.35, 0.35),
-          s: p.random(2, 9),
+          vx: p.random(-0.22, 0.22),
+          vy: p.random(-0.22, 0.22),
+          s: p.random(2, 7),
           phase: p.random(p.TAU)
         });
       }
@@ -288,7 +288,7 @@ if (window.p5) {
 
     function buildGrid() {
       grid = [];
-      const gap = p.width < 700 ? 34 : 46;
+      const gap = p.width < 700 ? 44 : 68;
       for (let x = -gap; x < p.width + gap; x += gap) {
         for (let y = -gap; y < p.height + gap; y += gap) {
           grid.push({ x, y, n: p.random(1) });
@@ -299,10 +299,10 @@ if (window.p5) {
     function palette() {
       const dark = document.documentElement.dataset.theme === "dark";
       return {
-        bg: dark ? p.color(7, 7, 10, 24) : p.color(248, 248, 242, 28),
+        bg: dark ? p.color(7, 7, 10, 16) : p.color(248, 248, 242, 18),
         blue: dark ? p.color(111, 140, 255) : p.color(20, 87, 255),
         paper: dark ? p.color(246, 246, 237) : p.color(248, 248, 242),
-        alpha: dark ? 72 : 92
+        alpha: dark ? 46 : 54
       };
     }
 
@@ -326,13 +326,14 @@ if (window.p5) {
         const dx = cell.x - state.x;
         const dy = cell.y - state.y;
         const d = Math.sqrt(dx * dx + dy * dy);
-        const pull = Math.max(0, 1 - d / 220);
-        const jitter = Math.sin(t * 2 + index * 0.07) * 4 * pull;
-        p.line(cell.x + jitter, cell.y, cell.x + 18 + jitter, cell.y);
-        if ((index + Math.floor(t * 8)) % 9 === 0) {
+        const pull = Math.max(0, 1 - d / 260);
+        const jitter = Math.sin(t * 1.4 + index * 0.07) * 3 * pull;
+        p.stroke(p.red(c.blue), p.green(c.blue), p.blue(c.blue), 44 + pull * 72);
+        p.line(cell.x + jitter, cell.y, cell.x + 22 + jitter, cell.y);
+        if ((index + Math.floor(t * 5)) % 17 === 0) {
           p.noStroke();
-          p.fill(p.red(c.blue), p.green(c.blue), p.blue(c.blue), 35 + pull * 110);
-          p.rect(cell.x - pull * 12, cell.y - 2, 34 + pull * 42, 4 + pull * 8);
+          p.fill(p.red(c.blue), p.green(c.blue), p.blue(c.blue), 18 + pull * 84);
+          p.rect(cell.x - pull * 10, cell.y - 2, 30 + pull * 34, 3 + pull * 5);
           p.stroke(c.blue);
         }
       });
@@ -344,41 +345,43 @@ if (window.p5) {
       p.noFill();
       p.stroke(c.blue);
       p.strokeWeight(2);
-      const amp = 26 + state.pulse * 90 + (state.ambient ? 28 : 0);
+      const amp = 18 + state.pulse * 62 + (state.ambient ? 20 : 0);
       if (state.scene === "speed") {
-        for (let y = 70; y < p.height; y += 36) {
-          for (let x = -120; x < p.width + 120; x += 130) {
-            const offset = ((t * 180 + y * 0.7) % 130);
+        for (let y = 90; y < p.height; y += 54) {
+          for (let x = -120; x < p.width + 120; x += 180) {
+            const offset = ((t * 104 + y * 0.45) % 180);
             p.push();
             p.translate(x + offset, y);
             p.rotate(-0.28);
-            p.fill(c.blue);
+            p.fill(p.red(c.blue), p.green(c.blue), p.blue(c.blue), 125);
             p.noStroke();
-            p.rect(0, 0, 72 + state.pulse * 20, 9);
+            p.rect(0, 0, 68 + state.pulse * 14, 7);
             p.pop();
           }
         }
       } else if (state.scene === "floyd") {
         const cx = p.width * 0.5;
         const cy = p.height * 0.48;
-        for (let r = 80; r < Math.max(p.width, p.height); r += 42) {
+        p.stroke(p.red(c.blue), p.green(c.blue), p.blue(c.blue), 118);
+        for (let r = 100; r < Math.max(p.width, p.height); r += 64) {
           const wobble = Math.sin(t + r * 0.02) * amp;
           p.ellipse(cx, cy, r + wobble, r * 0.36 + wobble * 0.2);
         }
-        p.strokeWeight(7);
+        p.strokeWeight(4);
         p.line(cx - 190, cy - 70, cx - 36, cy - 8);
         p.line(cx - 36, cy - 8, cx + 220, cy + Math.sin(t) * 80);
       } else {
-        const count = state.scene === "ny" ? 34 : 46;
+        const count = state.scene === "ny" ? 24 : 30;
         for (let i = 0; i < count; i += 1) {
           const x = p.map(i, 0, count - 1, 40, p.width - 40);
-          const h = p.noise(i * 0.1, t * 0.55) * p.height * 0.5 + amp;
-          p.strokeWeight(i % 5 === 0 ? 7 : 2);
+          const h = p.noise(i * 0.1, t * 0.42) * p.height * 0.4 + amp;
+          p.stroke(p.red(c.blue), p.green(c.blue), p.blue(c.blue), 100);
+          p.strokeWeight(i % 5 === 0 ? 4 : 1.5);
           p.line(x, p.height * 0.55 - h * 0.5, x, p.height * 0.55 + h * 0.5);
           if (i % 3 === 0) {
             p.noStroke();
-            p.fill(c.blue);
-            p.rect(x - 7, p.height * 0.55 + Math.sin(t * 2 + i) * h * 0.28, 14, 44);
+            p.fill(p.red(c.blue), p.green(c.blue), p.blue(c.blue), 130);
+            p.rect(x - 5, p.height * 0.55 + Math.sin(t * 1.4 + i) * h * 0.22, 10, 34);
             p.stroke(c.blue);
           }
         }
@@ -393,9 +396,9 @@ if (window.p5) {
         const dx = dot.x - state.x;
         const dy = dot.y - state.y;
         const d = Math.sqrt(dx * dx + dy * dy) || 1;
-        const force = Math.max(0, 1 - d / 190) * (state.down ? 4.5 : 1.7);
-        dot.vx += (dx / d) * force * 0.18;
-        dot.vy += (dy / d) * force * 0.18;
+        const force = Math.max(0, 1 - d / 210) * (state.down ? 3.2 : 1.2);
+        dot.vx += (dx / d) * force * 0.13;
+        dot.vy += (dy / d) * force * 0.13;
         dot.vx += Math.sin(t + dot.phase) * 0.012;
         dot.vy += Math.cos(t * 0.7 + dot.phase) * 0.012;
         dot.vx *= 0.965;
@@ -406,7 +409,7 @@ if (window.p5) {
         if (dot.x > p.width + 40) dot.x = -40;
         if (dot.y < -40) dot.y = p.height + 40;
         if (dot.y > p.height + 40) dot.y = -40;
-        const alpha = 28 + Math.sin(t * 2 + index) * 22 + force * 100;
+        const alpha = 16 + Math.sin(t * 1.4 + index) * 12 + force * 68;
         p.fill(p.red(c.blue), p.green(c.blue), p.blue(c.blue), alpha);
         p.rect(dot.x, dot.y, dot.s + force * 10, dot.s * 0.48 + force * 4);
       });
