@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mejalism Corp, an avant-garde interactive p5.js webpage about garage rock, New York garage, and Pink Floyd genre language.">
+  <title>Mejalism Corp</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="p5-stage" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__dot"></span>
+    <span class="cursor__ring"></span>
+    <span class="cursor__readout">00</span>
+  </div>
+
+  <header class="topbar" data-interactive>
+    <a class="brand" href="#top" aria-label="Mejalism Corp home">
+      <span class="bracket">[</span>
+      <span class="pretext" data-pretext="MEJALISM.CORP">MEJALISM.CORP</span>
+      <span class="bracket">]</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#garage" data-interactive>Garage</a>
+      <a href="#ny" data-interactive>NY Signal</a>
+      <a href="#floyd" data-interactive>Pink Floyd</a>
+    </nav>
+    <div class="status-console" aria-label="System status">
+      <span class="led" id="idleLed" aria-hidden="true"></span>
+      <span id="statusText">live input</span>
+    </div>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="hero panel panel--hero" data-scene="omni" data-interactive>
+      <div class="panel__chrome">
+        <span>[</span>
+        <span>MEJALISM // CORP</span>
+        <span>]</span>
+      </div>
+      <div class="hero__body">
+        <div>
+          <p class="eyebrow pretext" data-pretext="AVANT GARAGE WEB SIGNAL">AVANT GARAGE WEB SIGNAL</p>
+          <h1 class="pretext" data-pretext="Mejalism Corp">Mejalism Corp</h1>
+        </div>
+        <p class="hero__copy">
+          A blue-white broadcast grid for raw guitar culture, New York basement velocity,
+          and psychedelic progressive detail. Click, hover, idle, and let the page answer back.
+        </p>
+      </div>
+      <div class="hero__diagram" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <section class="panel panel--speed" data-scene="speed" data-interactive>
+      <div class="panel__headline">
+        <h2 class="pretext" data-pretext="EXTRAORDINARY NOISE">EXTRAORDINARY NOISE</h2>
+        <p>
+          Mejalism Corp treats music identity like a living circuit: loud typography,
+          lean systems, tactile sound, and visual rhythm that reacts to the visitor.
+        </p>
+      </div>
+      <div class="speed-field" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </section>
+
+    <section id="garage" class="panel panel--info" data-scene="garage" data-interactive>
+      <div class="panel__chrome">
+        <span>[</span>
+        <span>GARAGE ROCK // DNA</span>
+        <span>]</span>
+      </div>
+      <div class="info-grid">
+        <h2 class="pretext" data-pretext="NO POLISH. NO APOLOGY.">NO POLISH. NO APOLOGY.</h2>
+        <p>
+          Garage rock is the compact shock of mid-1960s teen bands: fuzz guitar,
+          Farfisa-style organ, shouted hooks, short forms, and a refusal to sand down the edges.
+        </p>
+        <p>
+          The Mejalism Corp reading: garage is not nostalgia. It is a production rule.
+          Make the idea immediate, distorted, physical, and impossible to over-explain.
+        </p>
+      </div>
+      <div class="barcode barcode--wide" aria-hidden="true"></div>
+    </section>
+
+    <section id="ny" class="panel panel--ny" data-scene="ny" data-interactive>
+      <div class="panel__chrome">
+        <span>[</span>
+        <span>NEW YORK // GARAGE</span>
+        <span>]</span>
+      </div>
+      <div class="ny-copy">
+        <h2 class="pretext" data-pretext="BUILT IN BASEMENTS. OWNED BY FEEDBACK.">BUILT IN BASEMENTS. OWNED BY FEEDBACK.</h2>
+        <p>
+          New York garage adds city pressure: art-scene cool, street-level rhythm,
+          rehearsal-room distortion, and a clipped confidence that can feel half punk,
+          half private ritual.
+        </p>
+        <p>
+          Its vocabulary overlaps with proto-punk, downtown minimalism, no-wave attitude,
+          and later revival snap: dry drums, knife-edge guitars, deadpan vocals, and nervous repetition.
+        </p>
+      </div>
+      <div class="waveform" aria-hidden="true">
+        <span style="--h:42%"></span><span style="--h:64%"></span><span style="--h:78%"></span>
+        <span style="--h:54%"></span><span style="--h:90%"></span><span style="--h:68%"></span>
+        <span style="--h:82%"></span><span style="--h:45%"></span><span style="--h:74%"></span>
+        <span style="--h:96%"></span><span style="--h:62%"></span><span style="--h:88%"></span>
+      </div>
+    </section>
+
+    <section id="floyd" class="panel panel--floyd" data-scene="floyd" data-interactive>
+      <div class="panel__chrome">
+        <span>[</span>
+        <span>PINK FLOYD // GENRE DETAIL</span>
+        <span>]</span>
+      </div>
+      <div class="floyd-grid">
+        <h2 class="pretext" data-pretext="PSYCHEDELIC FORM. PROGRESSIVE SHADOW.">PSYCHEDELIC FORM. PROGRESSIVE SHADOW.</h2>
+        <article>
+          <h3>Early Signal</h3>
+          <p>British psychedelic rock, space-rock texture, blues traces, tape effects, and exploratory song forms.</p>
+        </article>
+        <article>
+          <h3>Expanded System</h3>
+          <p>Progressive rock architecture: concept albums, recurring motifs, extended arrangements, and studio-as-instrument thinking.</p>
+        </article>
+        <article>
+          <h3>Visual Translation</h3>
+          <p>Mejalism Corp turns that detail into slow pulses, prism-like grids, ambient drones, and text that mutates before it resolves.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <aside class="control-dock" aria-label="Interactive controls">
+    <button id="themeToggle" class="control-btn" type="button" data-interactive aria-label="Toggle dark and light mode">
+      <span>MODE</span><strong>LIGHT</strong>
+    </button>
+    <button id="ambientToggle" class="control-btn" type="button" data-interactive aria-label="Toggle ambient sound">
+      <span>AMBIENT</span><strong>OFF</strong>
+    </button>
+    <button id="pulseButton" class="control-btn" type="button" data-interactive aria-label="Trigger signal pulse">
+      <span>SIGNAL</span><strong>PULSE</strong>
+    </button>
+  </aside>
+
+  <footer class="footer">
+    <p class="pretext" data-pretext="MEJALISM CORP // FUZZ SYSTEMS // 2026">MEJALISM CORP // FUZZ SYSTEMS // 2026</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
